@@ -1,0 +1,4 @@
+github:
+  api:
+    base:
+      url: http://localhost:8888
