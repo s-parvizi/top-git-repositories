@@ -12,6 +12,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 @WireMockTest(httpsEnabled = true, httpPort = 8888)
@@ -82,7 +83,7 @@ class RepositoryControllerIntegrationTest {
     }
 
     @Test
-    void testGetTopRepositories_gitHubReturnResponse_shouldReturnAppropriateResponse() {
+    void testGetTopRepositories_gitHubReturnResponse_shouldReturnResponse() {
         stubFor(get("/search/repositories?q=created:%3E%3D2020-01-01&sort=stars&order=desc&page=1&per_page=30")
                 .willReturn(aResponse().withStatus(HttpStatus.OK.value())
                         .withHeader("Content-Type", "application/json")
@@ -95,6 +96,8 @@ class RepositoryControllerIntegrationTest {
                 .expectHeader().valueEquals("Content-type", "application/json")
                 .expectBody().jsonPath("$.items.length()").isEqualTo(1)
                 .returnResult();
+
+        assertThat(entityExchangeResult.getResponseBody()).isNotNull();
     }
 
     @Test
