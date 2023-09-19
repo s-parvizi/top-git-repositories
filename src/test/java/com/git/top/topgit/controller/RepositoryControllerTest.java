@@ -6,13 +6,11 @@ import com.git.top.topgit.exception.GitHubApiServerException;
 import com.git.top.topgit.model.GitHubResponseDto;
 import com.git.top.topgit.model.Repository;
 import com.git.top.topgit.service.GitHubApiClient;
-import jakarta.validation.ConstraintViolationException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
